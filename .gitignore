@@ -1,0 +1,15 @@
+.env
+.kilo/
+.vercel/
+frontend-deploy/
+__pycache__/
+*.pyc
+.venv/
+qualified_prospects.json
+qualify_checkpoint.jsonl
+cleaned_prospects.csv
+scraped_prospects.csv
+cleaned_prospects.json
+scraped_prospects.json
+analyze_out.txt
+all_names.txt
