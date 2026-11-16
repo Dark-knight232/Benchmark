@@ -135,6 +135,12 @@ async def run_workflow(scope_data: WorkflowScope):
         raise HTTPException(status_code=500, detail=f"Workflow execution error: {str(e)}")
 
 
+@app.get("/")
+@app.get("/health")
+async def health():
+    return {"status": "ok", "service": "orchard-gate-api", "version": "0.1.0"}
+
+
 @app.get("/api/prospects", response_model=List[Prospect])
 async def get_prospects():
     # Try to read from persisted JSON
