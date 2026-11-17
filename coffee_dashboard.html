@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orchard Gate LLC — Intelligent International Coffee Prospecting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --forest:#061b0e;
+    --forest-2:#0a2614;
+    --forest-3:#103019;
+    --gold:#C5A059;
+    --gold-soft:#d8bb7c;
+    --parchment:#fbf9f8;
+    --parchment-2:#f3efe9;
+    --ink:#1b1c1c;
+    --ink-60:rgba(27,28,28,0.62);
+    --ink-30:rgba(27,28,28,0.28);
+    --ink-12:rgba(27,28,28,0.12);
+    --on-forest-60:rgba(251,249,248,0.62);
+    --on-forest-30:rgba(251,249,248,0.22);
+    --on-forest-12:rgba(251,249,248,0.10);
+    --serif:"Noto Serif","Iowan Old Style",Georgia,serif;
+    --sans:"Manrope",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+    --maxw:1440px;
+    --pad-x:clamp(24px,5vw,88px);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  html{height:100%;}
+  body{
+    display:flex;flex-direction:column;height:100vh;overflow:hidden;
+    background:var(--parchment);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  a{color:inherit;text-decoration:none;}
+  button{font:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+  img{display:block;max-width:100%;}
+
+  /* ---------- Type ---------- */
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;}
+  .display{font-family:var(--serif);font-weight:400;line-height:1.02;letter-spacing:-.015em;}
+  .display em{font-style:italic;color:var(--gold);}
+  .lead{font-family:var(--sans);font-weight:300;line-height:1.5;letter-spacing:-.005em;}
+
+  .shell{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad-x);padding-right:var(--pad-x);position:relative;}
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position:sticky;top:0;z-index:50;flex:0 0 auto;
+    background:var(--forest);color:var(--parchment);
+    border-bottom:1px solid var(--gold);
+  }
+  .nav-inner{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:48px;height:88px;}
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand-mark{display:grid;place-items:center;width:46px;height:46px;border:1px solid var(--gold);border-radius:50%;}
+  .brand-mark svg{width:22px;height:22px;}
+  .brand-name{font-family:var(--serif);font-size:1.16rem;font-weight:700;letter-spacing:.16em;line-height:1;white-space:nowrap;}
+  .brand-name b{color:var(--gold-soft);}
+  .brand-name small{display:block;font-family:var(--mono);font-size:9px;font-weight:600;letter-spacing:.4em;color:var(--on-forest-60);margin-top:6px;}
+  .nav-links{display:flex;gap:36px;justify-content:center;list-style:none;margin:0;padding:0;}
+  .nav-links a{
+    font-family:var(--sans);font-size:13px;font-weight:500;letter-spacing:.02em;
+    color:var(--parchment);opacity:.85;position:relative;padding:6px 0;transition:opacity .2s ease;
+  }
+  .nav-links a:hover{opacity:1;}
+  .nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--gold);}
+  .nav-meta{
+    font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--on-forest-60);text-align:right;white-space:nowrap;
+  }
+  .nav-meta b{color:var(--gold);font-weight:500;}
+
+  /* ---------- Hero / workspace ---------- */
+  .hero{
+    position:relative;overflow:hidden;flex:0 0 auto;
+    background:
+      linear-gradient(180deg,rgba(6,27,14,.90) 0%,rgba(6,27,14,.96) 55%,rgba(6,27,14,.99) 100%),
+      url("https://orchardgatellc.com/assets/coffee-harvest.png") center/cover no-repeat;
+    color:var(--parchment);
+    border-top:1px solid var(--on-forest-12);
+  }
+  .hero-inner{
+    display:grid;
+    grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);
+    gap:clamp(32px,4vw,72px);
+    padding-top:clamp(48px,5vw,80px);
+    padding-bottom:clamp(48px,5vw,80px);
+    position:relative;z-index:1;
+    align-items:start;
+  }
+
+  /* ---------- Control panel (left) ---------- */
+  .control-meta{display:flex;justify-content:space-between;align-items:baseline;gap:16px;color:var(--on-forest-60);}
+  .control-meta .eyebrow{color:var(--gold);}
+  .control-title{
+    font-size:clamp(30px,3.2vw,44px);
+    text-transform:uppercase;
+    letter-spacing:.005em;
+    margin:34px 0 18px;
+    line-height:1.06;
+    max-width:16ch;
+  }
+  .control-title em{text-transform:uppercase;}
+  .control-sub{
+    font-size:15px;color:var(--on-forest-60);
+    max-width:42ch;margin:0 0 36px;
+  }
+
+  /* capability spec list */
+  .cap-list{list-style:none;margin:0 0 34px;padding:0;border-top:1px solid var(--on-forest-12);}
+  .cap-list li{
+    display:grid;grid-template-columns:56px minmax(0,1fr);
+    gap:16px;align-items:start;
+    padding:18px 0;border-bottom:1px solid var(--on-forest-12);
+  }
+  .cap-list .idx{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;color:var(--gold);padding-top:4px;}
+  .cap-list .cap-title{font-family:var(--serif);font-size:19px;line-height:1.18;color:var(--parchment);margin:0 0 5px;}
+  .cap-list .cap-desc{font-size:12.5px;color:var(--on-forest-60);margin:0;max-width:34ch;line-height:1.5;}
+
+  .btn{
+    font-family:var(--sans);font-size:12.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+    padding:16px 28px;border:1px solid transparent;
+    transition:background .2s ease,color .2s ease,border-color .2s ease;
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .btn-primary{background:var(--gold);color:var(--forest);border-color:var(--gold);}
+  .btn-primary:hover{background:var(--gold-soft);border-color:var(--gold-soft);}
+  .btn .arrow{transition:transform .2s ease;}
+  .btn:hover .arrow{transform:translateX(3px);}
+  .control-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;}
+  .control-actions .btn-primary{width:100%;justify-content:space-between;}
+
+  /* ---------- Scope dropdown (open) ---------- */
+  .scope{position:relative;margin-top:26px;}
+  .scope-label{
+    display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:10px;
+  }
+  .scope-trigger{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    width:100%;padding:14px 16px;
+    background:var(--forest-2);border:1px solid var(--gold);border-radius:0;
+    color:var(--parchment);font-family:var(--sans);font-size:13.5px;font-weight:500;letter-spacing:.01em;
+  }
+  .scope-trigger .chev{transition:transform .3s ease;}
+  .scope-trigger .chev svg{width:15px;height:15px;display:block;}
+  .scope-menu{
+    list-style:none;margin:8px 0 0;padding:6px;
+    position:absolute;left:0;right:0;z-index:9;
+    background:var(--forest-2);border:1px solid var(--gold);
+    box-shadow:0 22px 44px -18px rgba(0,0,0,.7);
+    animation:drop .26s ease both;
+  }
+  @keyframes drop{from{opacity:0;transform:translateY(-6px);}to{opacity:1;transform:none;}}
+  .scope-menu li{
+    display:flex;align-items:center;justify-content:space-between;gap:10px;
+    padding:12px 13px;cursor:pointer;
+    font-family:var(--sans);font-size:13px;color:var(--on-forest-60);
+    border-bottom:1px solid var(--on-forest-12);
+    transition:background .16s ease,color .16s ease;
+  }
+  .scope-menu li:last-child{border-bottom:none;}
+  .scope-menu li:hover{background:rgba(197,160,89,.10);color:var(--parchment);}
+  .scope-menu li.active{color:var(--parchment);background:rgba(197,160,89,.14);}
+  .scope-menu li .tick{opacity:0;color:var(--gold);display:inline-flex;}
+  .scope-menu li.active .tick{opacity:1;}
+  .scope-menu li .tick svg{width:14px;height:14px;}
+  .scope-note{margin:10px 0 0;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--on-forest-60);line-height:1.6;}
+
+  .demo-cursor{
+    position:absolute;right:2px;bottom:-34px;width:26px;height:26px;z-index:10;
+    filter:drop-shadow(0 4px 6px rgba(0,0,0,.5));
+    animation:cursorFloat 3.6s ease-in-out infinite;pointer-events:none;
+  }
+  @keyframes cursorFloat{0%,100%{transform:translate(0,0);}50%{transform:translate(-4px,-6px);}}
+
+  /* ---------- Data panel (right) ---------- */
+  .data-panel{
+    display:flex;flex-direction:column;
+    min-height:0;flex:1 1 auto;
+    background:var(--parchment);
+    color:var(--ink);
+    border:1px solid var(--gold);
+    box-shadow:0 40px 80px -40px rgba(0,0,0,.8);
+  }
+  .data-head{padding:30px 30px 22px;border-bottom:1px solid var(--ink-12);flex:0 0 auto;}
+  .data-head-top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;}
+  .sec-num{font-family:var(--mono);font-size:11px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;}
+  .sec-label{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-60);}
+  .data-title{font-family:var(--serif);font-size:clamp(26px,2.4vw,34px);font-weight:400;margin:14px 0 0;line-height:1.05;letter-spacing:-.01em;}
+  .data-title em{font-style:italic;color:var(--gold);}
+  .data-sub{font-size:12.5px;color:var(--ink-60);margin:10px 0 0;font-family:var(--sans);font-weight:300;}
+
+  .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:22px;border-top:1px solid var(--ink-12);padding-top:16px;}
+  .stat-row .st{border-right:1px solid var(--ink-12);padding-right:14px;}
+  .stat-row .st:last-child{border-right:none;padding-left:14px;}
+  .stat-row .st:not(:first-child){padding-left:14px;}
+  .stat-row .num{font-family:var(--serif);font-size:24px;line-height:1;color:var(--ink);}
+  .stat-row .num.g{color:var(--gold);}
+  .stat-row .lab{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-60);margin-top:7px;}
+
+  /* table */
+  .table-scroll{
+    overflow-x:auto;overflow-y:auto;
+    flex:1 1 auto;min-height:0;
+    max-height:60vh;
+  }
+  .table-scroll table.prospects{width:100%;border-collapse:collapse;min-width:880px;font-family:var(--sans);position:relative;}
+  .table-scroll table.prospects thead th{
+    position:sticky;top:0;z-index:2;
+    background:var(--forest);
+    color:var(--parchment);
+    font-family:var(--serif);font-weight:500;
+    font-size:11px;letter-spacing:.13em;text-transform:uppercase;
+    text-align:left;padding:14px 14px;white-space:nowrap;
+    border-right:1px solid var(--on-forest-12);
+  }
+  .table-scroll table.prospects thead th:last-child{border-right:none;}
+  table.prospects thead th.num{text-align:center;}
+  table.prospects thead th.score{text-align:right;}
+  table.prospects tbody td{
+    padding:14px 14px;vertical-align:top;
+    border-bottom:1px solid var(--ink-12);
+    font-size:12.5px;line-height:1.45;color:var(--ink);
+  }
+  table.prospects tbody tr:nth-child(odd){background:#ffffff;}
+  table.prospects tbody tr:nth-child(even){background:var(--parchment);}
+  table.prospects tbody tr:hover{background:rgba(197,160,89,.10);}
+  table.prospects tbody tr:last-child td{border-bottom:none;}
+
+  td.num{text-align:center;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--ink-60);}
+  td.company{min-width:170px;}
+  td.company .co{font-family:var(--serif);font-size:14.5px;color:var(--ink);line-height:1.2;}
+  td.company .site{display:block;margin-top:3px;font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;color:var(--ink-60);}
+  td.country{white-space:nowrap;}
+  td.country .flag{margin-right:5px;font-size:12px;}
+  td.category .tag{
+    display:inline-block;padding:3px 8px;
+    font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+    border:1px solid var(--ink-30);color:var(--ink-60);white-space:nowrap;
+  }
+  td.category .tag.imp{border-color:rgba(197,160,89,.55);color:#9a7a35;}
+  td.category .tag.dis{border-color:var(--ink-30);color:var(--ink-60);}
+
+  td.score{text-align:right;white-space:nowrap;font-family:var(--serif);font-size:18px;line-height:1;}
+  td.score .s{color:var(--ink);}
+  td.score .s.high{color:var(--gold);}
+  td.score .max{font-family:var(--mono);font-size:9px;color:var(--ink-60);letter-spacing:.04em;}
+  td.offer{min-width:130px;font-size:12px;color:var(--ink);}
+  td.offer .more{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.06em;color:var(--ink-60);margin-top:3px;}
+  td.rationale{min-width:180px;max-width:230px;font-size:11.5px;color:var(--ink-60);font-style:italic;}
+  td.rationale .ai{font-family:var(--mono);font-style:normal;font-size:8px;letter-spacing:.14em;color:var(--gold);margin-right:5px;vertical-align:1px;}
+  td.status{white-space:nowrap;}
+  .badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;}
+  .badge::before{content:"";width:6px;height:6px;border-radius:50%;}
+  .badge.verified{color:var(--gold);}
+  .badge.verified::before{background:var(--gold);box-shadow:0 0 0 3px rgba(197,160,89,.18);}
+  .badge.partial{color:var(--ink-60);}
+  .badge.partial::before{background:transparent;border:1px solid var(--ink-60);}
+
+  .data-foot{
+    display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center;
+    padding:16px 30px;border-top:1px solid var(--ink-12);
+    font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-60);
+    background:var(--parchment-2);
+  }
+  .data-foot .legend{display:flex;gap:18px;flex-wrap:wrap;align-items:center;}
+  .data-foot .legend span{display:inline-flex;align-items:center;gap:7px;}
+  .swatch{width:9px;height:9px;border:1px solid var(--ink-30);}
+  .swatch.g{background:var(--gold);border-color:var(--gold);}
+  .swatch.gr{background:transparent;}
+  .data-foot a{color:var(--gold);border-bottom:1px solid rgba(197,160,89,.5);padding-bottom:1px;}
+
+  /* ---------- Marquee strip ---------- */
+  .strip{
+    background:var(--forest);color:var(--gold);padding:18px 0;
+    border-top:1px solid var(--on-forest-12);border-bottom:1px solid var(--on-forest-12);
+    overflow:hidden;position:relative;
+  }
+  .strip-track{
+    display:flex;gap:64px;white-space:nowrap;animation:scroll 42s linear infinite;
+    font-family:var(--mono);font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+  }
+  .strip-track span{display:inline-flex;align-items:center;gap:64px;}
+  .strip-track .dot{display:inline-block;width:4px;height:4px;background:var(--gold);}
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ---------- Footer ---------- */
+  .footer{flex:0 0 auto;background:var(--forest);color:var(--on-forest-60);border-top:1px solid var(--gold);}
+  .footer-bottom{
+    padding:26px var(--pad-x);max-width:var(--maxw);margin:0 auto;
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--on-forest-60);
+  }
+  .footer-bottom .orn{display:inline-block;width:6px;height:6px;background:var(--gold);margin:0 12px;vertical-align:middle;}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:1080px){
+    .hero-inner{grid-template-columns:1fr;gap:44px;}
+    .control-title{max-width:22ch;}
+    .control-actions .btn-primary{width:auto;}
+  }
+  @media (max-width:980px){
+    .nav-inner{grid-template-columns:auto 1fr;height:80px;gap:16px;}
+    .nav-meta{display:none;}
+    .nav-links{gap:20px;}
+    .nav-links a{font-size:12px;}
+  }
+  @media (max-width:720px){
+    .nav-links{display:none;}
+    .nav-inner{grid-template-columns:1fr;height:76px;}
+    .control-title{font-size:1.9rem;}
+    .data-head{padding:24px 20px 18px;}
+    .data-foot{padding:14px 20px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .demo-cursor{animation:none;}
+    .scope-menu{animation:none;}
+    .strip-track{animation:none;}
+    .btn .arrow,.scope-trigger .chev{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="shell nav-inner">
+    <a href="#" class="brand" aria-label="Orchard Gate LLC">
+      <span class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#C5A059" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 21c4-2 7-5 7-10a7 7 0 0 0-14 0c0 5 3 8 7 10Z"/>
+          <path d="M12 21V9"/><path d="M12 13c-1.6 0-3-1.2-3-2.8M12 11c1.6 0 3-1.2 3-2.8"/>
+        </svg>
+      </span>
+      <span class="brand-name">ORCHARD <b>GATE</b><small>LLC · EST. 2024</small></span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a class="active" href="#">Home</a></li>
+      <li><a href="#origins">Coffee &amp; Origins</a></li>
+      <li><a href="#why">Why Indian Coffee</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="nav-meta">Buyer <b>Intelligence</b><br>Suite · 2026</div>
+  </div>
+</nav>
+
+<!-- ============ HERO / WORKSPACE ============ -->
+<header class="hero">
+  <div class="shell hero-inner">
+
+    <!-- LEFT: control panel -->
+    <section class="control-panel">
+      <div class="control-meta">
+        <div class="eyebrow">Prospecting Console</div>
+        <div class="eyebrow" style="color:var(--on-forest-60)">Origin · India</div>
+      </div>
+
+      <h1 class="display control-title">
+        Intelligent International <em>Coffee</em> Prospecting
+      </h1>
+
+      <p class="control-sub">
+        A premium sourcing engine that discovers, qualifies and ranks
+        international coffee buyers for Orchard Gate&rsquo;s single-estate exports.
+      </p>
+
+      <ol class="cap-list">
+        <li>
+          <span class="idx">01</span>
+          <div>
+            <h3 class="cap-title">Automated Research &amp; Web Scraping</h3>
+            <p class="cap-desc">Crawls 20+ verified global roaster and importer directories, politely.</p>
+          </div>
+        </li>
+        <li>
+          <span class="idx">02</span>
+          <div>
+            <h3 class="cap-title">AI-Powered Lead Qualification</h3>
+            <p class="cap-desc">Scores every buyer 0&ndash;100 against your ideal-account profile.</p>
+          </div>
+        </li>
+        <li>
+          <span class="idx">03</span>
+          <div>
+            <h3 class="cap-title">Build an Automated Workflow</h3>
+            <p class="cap-desc">Routes verified leads to your CRM and follow-up sequences.</p>
+          </div>
+        </li>
+      </ol>
+
+      <div class="control-actions">
+        <button class="btn btn-primary" id="initiateBtn" type="button">
+          <span>Initiate Prospecting Workflow</span>
+          <span class="arrow">&rarr;</span>
+        </button>
+      </div>
+
+      <!-- open scope dropdown -->
+      <div class="scope">
+        <span class="scope-label" id="scopeLabel">Select Scope:</span>
+        <button class="scope-trigger" type="button" aria-haspopup="listbox" aria-expanded="true" aria-labelledby="scopeLabel">
+          <span id="scopeValue">Full Pipeline Run</span>
+          <span class="chev" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#C5A059" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </span>
+        </button>
+
+        <ul class="scope-menu" role="listbox" aria-labelledby="scopeLabel">
+          <li role="option" class="active" data-value="Full Pipeline Run" aria-selected="true">
+            Full Pipeline Run
+            <span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#C5A059" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          </li>
+          <li role="option" data-value="Phase 1 Only: Scraping" aria-selected="false">
+            Phase 1 Only: Scraping
+            <span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#C5A059" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          </li>
+          <li role="option" data-value="Phase 2 Only: AI Scoring" aria-selected="false">
+            Phase 2 Only: AI Scoring
+            <span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#C5A059" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          </li>
+          <li role="option" data-value="Refresh Leads" aria-selected="false">
+            Refresh Leads
+            <span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#C5A059" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>
+          </li>
+        </ul>
+        <p class="scope-note">Scope applies to the next run · thresholds inherited</p>
+
+        <span class="demo-cursor" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M4 2l7 16 2.2-6.4L19.8 14 4 2Z" fill="#C5A059" stroke="#061b0e" stroke-width="1.3" stroke-linejoin="round"/></svg>
+        </span>
+      </div>
+    </section>
+
+    <!-- RIGHT: data panel -->
+    <section class="data-panel" aria-labelledby="prospectsTitle">
+      <div class="data-head">
+        <div class="data-head-top">
+          <span class="sec-num">S / 01</span>
+          <span class="sec-label">Pipeline Output</span>
+        </div>
+        <h2 class="data-title" id="prospectsTitle">Qualified <em>Prospects</em></h2>
+        <p class="data-sub">International buyers ranked by fit · refreshed 2 min ago · sourced from 12 directories</p>
+
+        <div class="stat-row">
+          <div class="st"><div class="num">8</div><div class="lab">Leads</div></div>
+          <div class="st"><div class="num g">82.6</div><div class="lab">Avg Score / 100</div></div>
+          <div class="st"><div class="num">5</div><div class="lab">Verified</div></div>
+        </div>
+      </div>
+
+      <div class="table-scroll">
+        <table class="prospects">
+          <thead>
+            <tr>
+              <th class="num">S/N</th>
+              <th>Company Name</th>
+              <th>Country</th>
+              <th>Buyer Category</th>
+              <th class="score">Priority</th>
+              <th>Key Offerings</th>
+              <th>Rationale</th>
+              <th>Lead Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="num">01</td>
+              <td class="company"><span class="co">Araku Valley Roasters</span><span class="site">arakuvalleyroasters.com</span></td>
+              <td class="country"><span class="flag">&#127470;&#127475;</span>India</td>
+              <td class="category"><span class="tag">Specialty Roaster</span></td>
+              <td class="score"><span class="s high">94</span><span class="max">/100</span></td>
+              <td class="offer">Washed Arabica<span class="more">+ Microlot · Organic</span></td>
+              <td class="rationale"><span class="ai">AI</span>High-volume roaster already sourcing Indian arabica &mdash; strong fit for single-estate volume.</td>
+              <td class="status"><span class="badge verified">Verified</span></td>
+            </tr>
+            <tr>
+              <td class="num">02</td>
+              <td class="company"><span class="co">Nyeri Highland Traders</span><span class="site">nyerihighland.co.ke</span></td>
+              <td class="country"><span class="flag">&#127472;&#127466;</span>Kenya</td>
+              <td class="category"><span class="tag imp">Importer</span></td>
+              <td class="score"><span class="s high">91</span><span class="max">/100</span></td>
+              <td class="offer">Green Beans<span class="more">+ Peaberry AA</span></td>
+              <td class="rationale"><span class="ai">AI</span>Established green importer with transparent sourcing &mdash; matches sustainability positioning.</td>
+              <td class="status"><span class="badge verified">Verified</span></td>
+            </tr>
+            <tr>
+              <td class="num">03</td>
+              <td class="company"><span class="co">Balur Estate Imports</span><span class="site">balurestate.in</span></td>
+              <td class="country"><span class="flag">&#127470;&#127475;</span>India</td>
+              <td class="category"><span class="tag imp">Importer</span></td>
+              <td class="score"><span class="s high">89</span><span class="max">/100</span></td>
+              <td class="offer">Monsooned Malabar<span class="more">+ Robusta</span></td>
+              <td class="rationale"><span class="ai">AI</span>Specialises in monsoon-processed lots &mdash; direct overlap with Orchard Gate&rsquo;s heritage range.</td>
+              <td class="status"><span class="badge verified">Verified</span></td>
+            </tr>
+            <tr>
+              <td class="num">04</td>
+              <td class="company"><span class="co">Sumatra Leaf Imports</span><span class="site">sumatraleaf.co.id</span></td>
+              <td class="country"><span class="flag">&#127470;&#127465;</span>Indonesia</td>
+              <td class="category"><span class="tag dis">Distributor</span></td>
+              <td class="score"><span class="s high">88</span><span class="max">/100</span></td>
+              <td class="offer">Liberica<span class="more">+ Wet-Hulled Arabica</span></td>
+              <td class="rationale"><span class="ai">AI</span>Differentiated varietal demand and regional logistics make this a fast, low-risk win.</td>
+              <td class="status"><span class="badge verified">Verified</span></td>
+            </tr>
+            <tr>
+              <td class="num">05</td>
+              <td class="company"><span class="co">Fazenda Aurora Exporters</span><span class="site">fazendaaurora.com.br</span></td>
+              <td class="country"><span class="flag">&#127463;&#127479;</span>Brazil</td>
+              <td class="category"><span class="tag">Specialty Roaster</span></td>
+              <td class="score"><span class="s">84</span><span class="max">/100</span></td>
+              <td class="offer">Natural Pulp<span class="more">+ Single Origin</span></td>
+              <td class="rationale"><span class="ai">AI</span>Premium roaster expanding into washed lots; volume fits but price band is tight.</td>
+              <td class="status"><span class="badge partial">Partial</span></td>
+            </tr>
+            <tr>
+              <td class="num">06</td>
+              <td class="company"><span class="co">The Lankan Bean Co.</span><span class="site">lankanbean.lk</span></td>
+              <td class="country"><span class="flag">&#127473;&#127472;</span>Sri Lanka</td>
+              <td class="category"><span class="tag dis">Distributor</span></td>
+              <td class="score"><span class="s">82</span><span class="max">/100</span></td>
+              <td class="offer">Espresso Blends<span class="more">+ Cold Brew</span></td>
+              <td class="rationale"><span class="ai">AI</span>Growing HoReCa distribution network &mdash; strong channel for recurring contract volume.</td>
+              <td class="status"><span class="badge verified">Verified</span></td>
+            </tr>
+            <tr>
+              <td class="num">07</td>
+              <td class="company"><span class="co">Saigon Roast Collective</span><span class="site">saigonroast.vn</span></td>
+              <td class="country"><span class="flag">&#127483;&#127475;</span>Vietnam</td>
+              <td class="category"><span class="tag">Specialty Roaster</span></td>
+              <td class="score"><span class="s">76</span><span class="max">/100</span></td>
+              <td class="offer">Robusta Blends<span class="more">+ Peaberry</span></td>
+              <td class="rationale"><span class="ai">AI</span>Competitive pricing focus; limited margin headroom but useful for volume diversification.</td>
+              <td class="status"><span class="badge partial">Partial</span></td>
+            </tr>
+            <tr>
+              <td class="num">08</td>
+              <td class="company"><span class="co">Yirgacheffe Gate Roasters</span><span class="site">yirgacheffegate.et</span></td>
+              <td class="country"><span class="flag">&#127466;&#127481;</span>Ethiopia</td>
+              <td class="category"><span class="tag imp">Importer</span></td>
+              <td class="score"><span class="s">67</span><span class="max">/100</span></td>
+              <td class="offer">Heirloom Varietals<span class="more">+ Sun-Dried</span></td>
+              <td class="rationale"><span class="ai">AI</span>Emerging origin with high growth potential; contact details only partially verified.</td>
+              <td class="status"><span class="badge partial">Partial</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="data-foot">
+        <div class="legend">
+          <span><i class="swatch g"></i>Priority &ge; 85</span>
+          <span><i class="swatch gr"></i>Priority &lt; 85</span>
+        </div>
+        <div>Export &middot; <a href="#">CSV</a> &nbsp;/&nbsp; <a href="#">JSON</a> &nbsp;/&nbsp; <a href="#">CRM</a></div>
+      </div>
+    </section>
+
+  </div>
+</header>
+
+<!-- ============ MARQUEE STRIP ============ -->
+<div class="strip" aria-hidden="="true">
+  <div class="strip-track">
+    <span>Karnataka <i class="dot"></i> Kerala <i class="dot"></i> Tamil Nadu <i class="dot"></i> Araku Valley <i class="dot"></i> Odisha (Koraput) <i class="dot"></i> Washed Arabica <i class="dot"></i> Robusta <i class="dot"></i> Naturals <i class="dot"></i> Honey <i class="dot"></i> Fermented Lots <i class="dot"></i></span>
+    <span>Karnataka <i class="dot"></i> Kerala <i class="dot"></i> Tamil Nadu <i class="dot"></i> Araku Valley <i class="dot"></i> Odisha (Koraput) <i class="dot"></i> Washed Arabica <i class="dot"></i> Robusta <i class="dot"></i> Naturals <i class="dot"></i> Honey <i class="dot"></i> Fermented Lots <i class="dot"></i></span>
+  </div>
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer" id="contact">
+  <div class="footer-bottom">
+    <div>&copy; 2026 Orchard Gate LLC <span class="orn"></span> All rights reserved</div>
+    <div>Origin India <span class="orn"></span> Supplied Globally</div>
+  </div>
+</footer>
+
+<script>
+// Scope dropdown (starts visually open per spec; toggles on click)
+  const trigger = document.querySelector('.scope-trigger');
+  const menu = document.querySelector('.scope-menu');
+  const scopeValueEl = document.getElementById('scopeValue');
+
+  trigger.addEventListener('click', () => {
+    const isOpen = menu.style.display !== 'none';
+    menu.style.display = isOpen ? 'none' : 'block';
+    trigger.setAttribute('aria-expanded', String(!isOpen));
+  });
+
+  menu.querySelectorAll('li').forEach(li => {
+    li.addEventListener('click', () => {
+      menu.querySelectorAll('li').forEach(o => {
+        o.classList.remove('active');
+        o.setAttribute('aria-selected', 'false');
+      });
+      li.classList.add('active');
+      li.setAttribute('aria-selected', 'true');
+      scopeValueEl.textContent = li.dataset.value;
+    });
+  });
+
+// Initiate workflow feedback + API integration
+  const btn = document.getElementById('initiateBtn');
+  const tbody = document.querySelector('table.prospects tbody');
+  const statLeads = document.querySelector('.stat-row .st:first-child .num');
+  const statAvg = document.querySelector('.stat-row .st:nth-child(2) .num');
+  const statVerified = document.querySelector('.stat-row .st:last-child .num');
+  const RENDER_API_BASE = 'https://orchard-gate-api.onrender.com';
+
+  function mapScopeToParam(scopeValue) {
+    const map = {
+      'Full Pipeline Run': 'full_pipeline',
+      'Phase 1 Only: Scraping': 'scraping_only',
+      'Phase 2 Only: AI Scoring': 'scoring_only',
+      'Refresh Leads': 'full_pipeline',
+    };
+    return map[scopeValue] || 'full_pipeline';
+  }
+
+  function renderProspects(prospects) {
+    tbody.innerHTML = '';
+    prospects.forEach((p, i) => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td class="num">${String(p.sn || i + 1).padStart(2, '0')}</td>
+        <td class="company"><span class="co">${p.company_name}</span><span class="site">${p.company_name.toLowerCase().replace(/[^a-z0-9]+/g, '')}.com</span></td>
+        <td class="country"><span class="flag">${getFlagEmoji(p.country)}</span>${p.country}</td>
+        <td class="category"><span class="tag">${p.buyer_category}</span></td>
+        <td class="score"><span class="s ${p.priority_score >= 85 ? 'high' : ''}">${Math.round(p.priority_score)}</span><span class="max">/100</span></td>
+        <td class="offer">${p.key_offerings}<span class="more"></span></td>
+        <td class="rationale"><span class="ai">AI</span>${p.rationale}</td>
+        <td class="status"><span class="badge ${p.data_health_status === 'Verified' ? 'verified' : 'partial'}">${p.data_health_status}</span></td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    // Update stats
+    const avg = prospects.length ? (prospects.reduce((s, p) => s + p.priority_score, 0) / prospects.length).toFixed(1) : '0';
+    const verified = prospects.filter(p => p.data_health_status === 'Verified').length;
+    statLeads.textContent = prospects.length;
+    statAvg.textContent = avg;
+    statVerified.textContent = verified;
+  }
+
+  function getFlagEmoji(country) {
+    const flags = {
+      'India': '&#127470;&#127475;',
+      'Kenya': '&#127472;&#127466;',
+      'Indonesia': '&#127470;&#127465;',
+      'Brazil': '&#127463;&#127479;',
+      'Sri Lanka': '&#127473;&#127472;',
+      'Vietnam': '&#127483;&#127475;',
+      'Ethiopia': '&#127466;&#127481;',
+    };
+    return flags[country] || '';
+  }
+
+  btn.addEventListener('click', async () => {
+    const label = btn.querySelector('span');
+    const original = label.textContent;
+    btn.disabled = true;
+    label.textContent = 'Starting workflow…';
+
+    const scopeValue = scopeValueEl.textContent;
+    const scopeParam = mapScopeToParam(scopeValue);
+
+    try {
+      const response = await fetch(`${RENDER_API_BASE}/api/run-workflow`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ scope: scopeParam }),
+      });
+
+      if (!response.ok) {
+        const err = await response.json();
+        throw new Error(err.detail || 'Workflow failed');
+      }
+
+      await response.json();
+      label.textContent = 'Workflow complete ✓';
+      await new Promise(r => setTimeout(r, 500));
+
+      // Fetch and render prospects
+      const prospectsResp = await fetch(`${RENDER_API_BASE}/api/prospects`);
+      const prospects = await prospectsResp.json();
+      renderProspects(prospects);
+    } catch (err) {
+      label.textContent = 'Error: ' + err.message;
+      console.error(err);
+    } finally {
+      btn.disabled = false;
+      setTimeout(() => { label.textContent = original; }, 2000);
+    }
+  });
+</script>
+</body>
+</html>
